@@ -2,7 +2,6 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const date = require(__dirname + "/date.js");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -20,8 +19,27 @@ const itemSchema = new mongoose.Schema({
 
 const Item = mongoose.model("Item", itemSchema);
 
-const items = ["Buy Food", "Cook Food", "Eat Food"];
-const workItems = [];
+const item1 = new Item({
+  name: "Do 2 hours of web deb",
+})
+
+const item2 = new Item({
+  name: "Study driving for 1 hour",
+})
+
+const item3 = new Item({
+  name: "Learn more about binary trees for 1 hour",
+})
+
+const defaultItems = [item1, item2, item3];
+
+Item.insertMany(defaultItems, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Default items successfully added");
+  }
+})
 
 app.get("/", function(req, res) {
 
