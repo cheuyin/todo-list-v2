@@ -33,18 +33,22 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
-Item.insertMany(defaultItems, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Default items successfully added");
-  }
-})
+// Item.insertMany(defaultItems, (err) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Default items successfully added");
+//   }
+// })
 
 app.get("/", function(req, res) {
-
-  res.render("list", {listTitle: "Today", newListItems: items});
-
+  Item.find((err, items) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("list", {listTitle: "Today", newListItems: items});
+    }
+  })
 });
 
 app.post("/", function(req, res){
