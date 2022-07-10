@@ -1,3 +1,5 @@
 # Todo List V2
 
-Todo list app that uses Mongoose to create a database.
+Todo list app with MongoDB and Heroku.
+
+App: https://arcane-savannah-44959.herokuapp.com/
